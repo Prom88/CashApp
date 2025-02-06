@@ -1,4 +1,4 @@
-import Home from '../pages/homePage/home'
+import { Home } from '../pages/homePage'
 import './index.css'
 
 const Page = () => {
