@@ -1,9 +1,7 @@
-import { Ticket } from '../../../widgets/ticket'
-import { Banner, FlexContainer, Header } from './styled'
+import logo from '#assets/Logo.svg'
+import { IItem, Ticket } from '../../../widgets/ticket'
+import { Banner, FlexContainer } from './styled'
 
-import { IItem } from '../../../widgets/ticket'
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const items: IItem[] = [
 	{
 		id: 1,
@@ -33,14 +31,9 @@ const items: IItem[] = [
 export const Home = () => {
 	return (
 		<>
-			<Header />
 			<FlexContainer>
 				<Banner>
-					<img
-						src='https://cdn.modulbank.ru/images-new/partners/offers/cloudshop.png'
-						alt='~'
-						width={650}
-					/>
+					<img src={logo} alt='~' width={650} />
 				</Banner>
 				<Ticket products={items} />
 			</FlexContainer>
