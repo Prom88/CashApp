@@ -1,6 +1,6 @@
 import logo from '#assets/Logo.svg'
 import { IItem, Ticket } from '../../../widgets/ticket'
-import { Banner, FlexContainer } from './styled'
+import { Banner, FlexContainer, Logo } from './styled'
 
 const items: IItem[] = [
 	{
@@ -33,8 +33,9 @@ export const Home = () => {
 		<>
 			<FlexContainer>
 				<Banner>
-					<img src={logo} alt='~' width={650} />
+					<Logo src={logo} alt='Logo' width='30%' />
 				</Banner>
+
 				<Ticket products={items} />
 			</FlexContainer>
 		</>

@@ -1,22 +1,23 @@
+import { baseTheme } from '#shared/theme.ts'
 import styled from 'styled-components'
 
 export const Container = styled.div`
 	min-height: 100%;
-	background-color: #ffffff;
-	width: 640px;
+	background-color: ${baseTheme.colors.white};
+	width: 25%;
 	display: flex;
 	flex-direction: column;
 `
 
 export const ItemBox = styled.div`
 	border-bottom: 1px solid black;
-	border-color: #c2c2c2;
+	border-color: ${baseTheme.colors.gray};
 `
 export const Title = styled.h2`
 	font-size: 32px;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	color: #565656;
+	color: ${baseTheme.colors.gray};
 	text-align: center;
 `
 
@@ -38,19 +39,19 @@ export const Name = styled.p`
 
 export const Price = styled.p`
 	font-size: 11px;
-	color: #565656;
+	color: ${baseTheme.colors.gray};
 `
 export const Quantity = styled.p`
 	font-size: 18px;
-	color: #1f1f1f;
-	color: #565656;
+	color: ${baseTheme.colors.black};
+	color: ${baseTheme.colors.gray};
 	justify-self: start;
 `
 
 export const Total = styled.p`
 	margin-left: auto;
 	font-size: 18px;
-	color: #1f1f1f;
+	color: ${baseTheme.colors.black};
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `
@@ -71,7 +72,7 @@ export const PayButton = styled.button`
 	font-size: 36px;
 	font-weight: semi-bold;
 	border-radius: 17px;
-	background-color: #335898;
+	background-color: ${baseTheme.colors.blue};
 `
 export const Image = styled.img`
 	width: 40px;

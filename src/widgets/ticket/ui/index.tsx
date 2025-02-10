@@ -22,8 +22,7 @@ export interface IItem {
 }
 
 export const Ticket = ({ products }: { products: IItem[] }) => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [items, setItems] = useState(products)
+	const items = products
 	const [total, setTotal] = useState<number>(0)
 
 	function calculateTotal() {
