@@ -36,6 +36,7 @@ export const Ticket = ({ products }: { products: IItem[] }) => {
 
 	useEffect(() => {
 		calculateTotal()
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [items])
 

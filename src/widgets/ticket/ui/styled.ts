@@ -7,6 +7,15 @@ export const Container = styled.div`
 	width: 25%;
 	display: flex;
 	flex-direction: column;
+	@media (max-width: 1440px) {
+		width: 40%;
+	}
+	@media (max-width: 1024px) {
+		width: 50%;
+	}
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 `
 
 export const ItemBox = styled.div`
