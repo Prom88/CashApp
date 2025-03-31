@@ -1,0 +1,22 @@
+{
+	"carousel": {
+		"duration": 3000,
+		"items": [
+			{
+				"url": "https://i.pinimg.com/1200x/9a/30/ba/9a30baebc895fe85d15a79c3dcce3310.jpg"
+			},
+			{
+				"url": "https://i.pinimg.com/originals/b4/f4/42/b4f442526bf1ec6540b982eb3bdce517.jpg"
+			},
+			{
+				"url": "https://i.pinimg.com/originals/b4/f4/42/b4f442526bf1ec6540b982eb3bdce517.jpg"
+			},
+			{
+				"url": "https://i.pinimg.com/1200x/26/13/31/2613312af8a15fae8d3ab45d3072df54.jpg"
+			}
+		]
+	},
+	"products": {
+		"position": "right"
+	}
+}

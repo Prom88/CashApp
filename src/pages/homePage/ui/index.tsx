@@ -1,6 +1,9 @@
-import logo from '#assets/Logo.svg'
+import settings from '#shared/settings.json'
+import { Carousel } from '#widgets/carousel/index.ts'
 import { IItem, Ticket } from '../../../widgets/ticket'
-import { Banner, FlexContainer, Logo } from './styled'
+import { FlexContainer } from './styled'
+
+console.log(settings)
 
 const items: IItem[] = [
 	{
@@ -32,9 +35,7 @@ export const Home = () => {
 	return (
 		<>
 			<FlexContainer>
-				<Banner>
-					<Logo src={logo} alt='Logo' width='30%' />
-				</Banner>
+				<Carousel settings={settings.carousel} />
 
 				<Ticket products={items} />
 			</FlexContainer>
