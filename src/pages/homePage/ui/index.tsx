@@ -34,9 +34,14 @@ const items: IItem[] = [
 export const Home = () => {
 	return (
 		<>
-			<FlexContainer>
+			<FlexContainer
+				style={{
+					flexDirection: `${
+						settings.products.position == 'left' ? 'row-reverse' : 'row'
+					}`,
+				}}
+			>
 				<Carousel settings={settings.carousel} />
-
 				<Ticket products={items} />
 			</FlexContainer>
 		</>

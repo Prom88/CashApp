@@ -10,6 +10,7 @@ type TCarousel = {
 
 export const Carousel = ({ settings }: { settings: TCarousel }) => {
 	const [currentIndex, setCurrentIndex] = useState(0)
+	const [isTransitioning, setIsTransitioning] = useState(false)
 
 	const nextSlide = () => {
 		setCurrentIndex((prevIndex) =>
@@ -18,8 +19,14 @@ export const Carousel = ({ settings }: { settings: TCarousel }) => {
 	}
 
 	useEffect(() => {
+		const animateTimer = setTimeout(() => {
+			setIsTransitioning(true)
+		}, settings.duration - 1000)
+
 		const timer = setTimeout(() => {
 			nextSlide()
+			setIsTransitioning(false)
+			clearTimeout(animateTimer)
 		}, settings.duration)
 
 		return () => clearTimeout(timer)
@@ -35,6 +42,10 @@ export const Carousel = ({ settings }: { settings: TCarousel }) => {
 				<Image
 					src={settings.items[currentIndex].url}
 					height={visualViewport?.height}
+					style={{
+						transition: '0.5s ease-in-out',
+						opacity: isTransitioning ? '0' : '1',
+					}}
 				/>
 			</CarouselBackground>
 		</Banner>
