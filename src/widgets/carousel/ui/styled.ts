@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Banner = styled.div`
+	overflow: hidden;
 	display: flex;
 	justify-content: center;
 	width: 75%;
@@ -39,4 +40,15 @@ export const CarouselBackground = styled.div`
 export const Image = styled.img`
 	max-height: 100%;
 	border: white solid 10px;
+`
+export const StyledCarousel = styled.div`
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	align-items: center;
+	background-size: cover;
+	background-position: center;
+	min-height: 100%;
+	user-select: none;
+	pointer-events: none;
 `

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Banner, CarouselBackground, Image } from './styled'
+import { Banner, CarouselBackground, Image, StyledCarousel } from './styled'
 
 type TCarousel = {
 	duration: number
@@ -19,35 +19,47 @@ export const Carousel = ({ settings }: { settings: TCarousel }) => {
 	}
 
 	useEffect(() => {
-		const animateTimer = setTimeout(() => {
+		const vanishTimer = setTimeout(() => {
 			setIsTransitioning(true)
-		}, settings.duration - 1000)
+		}, settings.duration * 0.85)
+
+		const appearanceTimer = setTimeout(() => {
+			setIsTransitioning(false)
+		}, settings.duration * 0.15)
 
 		const timer = setTimeout(() => {
 			nextSlide()
-			setIsTransitioning(false)
-			clearTimeout(animateTimer)
+			clearTimeout(appearanceTimer)
+			clearTimeout(vanishTimer)
 		}, settings.duration)
 
 		return () => clearTimeout(timer)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentIndex, settings.duration])
 
 	return (
-		<Banner
-			style={{
-				backgroundImage: `url(${settings.items[currentIndex].url})`,
-			}}
-		>
-			<CarouselBackground>
-				<Image
-					src={settings.items[currentIndex].url}
-					height={visualViewport?.height}
+		<Banner>
+			{settings.items.map((item, index) => (
+				<StyledCarousel
+					id={index.toString()}
 					style={{
-						transition: '0.5s ease-in-out',
-						opacity: isTransitioning ? '0' : '1',
+						display: index === currentIndex ? 'flex' : 'none',
+						backgroundImage: `url(${item.url})`,
 					}}
-				/>
-			</CarouselBackground>
+				>
+					<CarouselBackground>
+						<Image
+							src={item.url}
+							height={visualViewport?.height}
+							style={{
+								display: index === currentIndex ? 'flex' : 'none',
+								opacity: isTransitioning ? 0 : 1,
+								transition: `${(settings.duration * 0.15) / 1000}s ease-in-out`,
+							}}
+						/>
+					</CarouselBackground>
+				</StyledCarousel>
+			))}
 		</Banner>
 	)
 }
