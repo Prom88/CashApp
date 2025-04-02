@@ -29,7 +29,7 @@ export const Logo = styled.img`
 `
 
 export const CarouselBackground = styled.div`
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -39,6 +39,7 @@ export const CarouselBackground = styled.div`
 `
 export const Image = styled.img`
 	max-height: 100%;
+	max-width: 100%;
 	border: white solid 10px;
 `
 export const StyledCarousel = styled.div`

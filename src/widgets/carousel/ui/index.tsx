@@ -50,7 +50,6 @@ export const Carousel = ({ settings }: { settings: TCarousel }) => {
 					<CarouselBackground>
 						<Image
 							src={item.url}
-							height={visualViewport?.height}
 							style={{
 								display: index === currentIndex ? 'flex' : 'none',
 								opacity: isTransitioning ? 0 : 1,
