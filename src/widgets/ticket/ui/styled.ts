@@ -2,7 +2,7 @@ import { baseTheme } from '#shared/theme.ts'
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	min-height: 100%;
+	max-height: 100vh;
 	background-color: ${baseTheme.colors.white};
 	width: 25%;
 	display: flex;
@@ -30,6 +30,13 @@ export const Title = styled.h2`
 	text-align: center;
 `
 
+export const List = styled.div`
+	overflow-y: scroll;
+	max-height: 75%;
+	scrollbar-width: thin; /* "auto" или "thin" */
+	scrollbar-color: ${baseTheme.colors.gray} ${baseTheme.colors.white};
+`
+
 export const Item = styled.li`
 	margin: 0 20px 0 25px;
 	gap: 10px;
@@ -40,10 +47,17 @@ export const Item = styled.li`
 `
 
 export const TitleBox = styled.div`
-	width: 400px;
+	max-height: 100%;
+	max-width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `
-export const Name = styled.p`
+export const Name = styled.span`
 	font-size: 16px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 70px;
+	display: block;
 `
 
 export const Price = styled.p`
@@ -67,13 +81,13 @@ export const Total = styled.p`
 
 export const PayButton = styled.button`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	padding: 0 25px;
+	padding: auto;
 
 	align-self: stretch;
-	width: calc(100% - 50px);
-	height: 90px;
+	min-width: calc(100% - 50px);
+	min-height: 90px;
 	margin: 0 25px 25px;
 	margin-top: auto;
 	border: none;
@@ -83,6 +97,13 @@ export const PayButton = styled.button`
 	border-radius: 17px;
 	background-color: ${baseTheme.colors.blue};
 `
+
+export const FinalTotal = styled.div`
+	min-width: 80%;
+	display: flex;
+	justify-content: space-between;
+`
+
 export const Image = styled.img`
 	width: 40px;
 	height: 40px;

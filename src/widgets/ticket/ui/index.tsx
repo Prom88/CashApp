@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
 import {
 	Container,
+	FinalTotal,
 	Image,
 	Item,
 	ItemBox,
+	List,
 	Name,
 	PayButton,
 	Price,
@@ -13,44 +14,61 @@ import {
 	Total,
 } from './styled'
 
-export interface IItem {
-	id: number
-	name: string
-	image: string
-	price: number
-	quantity: number
+import { useEffect, useRef } from 'react'
+
+type TTicket = {
+	discount_sum: number
+	payments: {
+		orders_sum: number
+	}
+	products: {
+		qty: number
+		_id: string
+		price: number
+		sum: number
+		product: {
+			name: string
+		}
+	}[]
 }
 
-export const Ticket = ({ products }: { products: IItem[] }) => {
-	const items = products
-	const [total, setTotal] = useState<number>(0)
+// список товаров и итоговая сумма в shared/data.json
+// список товаров: products: [{_id, price, sum, product: {name}],
+// количество - ???
+// итоговая сумма: payments: {orders_sum} (почти в самом низу)
 
-	function calculateTotal() {
-		const total = items.reduce(
-			(acc, item) => acc + item.price * item.quantity,
-			0
-		)
+export const Ticket = ({ trans }: { trans: TTicket }) => {
+	const scrollRef = useRef<HTMLDivElement>(null)
 
-		setTotal(total)
+	const scrollToBottom = () => {
+		if (!scrollRef.current) return
+		scrollRef.current.scrollTo({
+			top: scrollRef.current.scrollHeight,
+			behavior: 'smooth',
+		})
 	}
 
 	useEffect(() => {
-		calculateTotal()
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [items])
+		scrollToBottom()
+	}, [])
 
 	return (
 		<Container>
 			<Title>Чек продажи</Title>
-			<ul>
-				{items.map((item) => (
-					<ItemBox key={item.id}>
+			<List ref={scrollRef}>
+				{trans.products.map((item) => (
+					<ItemBox key={item._id}>
 						<Item>
-							<Image src={item.image} alt={item.name} height={96} width={96} />
-
+							<Image
+								src={
+									'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBZDlSHxRAmyCLZMh68JQmFYb0whxSjwSm1g&s'
+								}
+								alt={'/'}
+								height={96}
+								width={96}
+							/>
 							<TitleBox>
-								<Name>{item.name}</Name>
+								<Name>{item.product.name}</Name>
 								<Price>
 									Цена:{' '}
 									{new Intl.NumberFormat('ru-RU', {
@@ -59,26 +77,28 @@ export const Ticket = ({ products }: { products: IItem[] }) => {
 									}).format(item.price)}
 								</Price>
 							</TitleBox>
-							<Quantity>x{item.quantity}</Quantity>
+							<Quantity>x{item.qty * -1}</Quantity>
 							<Total>
 								{new Intl.NumberFormat('ru-RU', {
 									style: 'currency',
 									currency: 'RUB',
-								}).format(item.price * item.quantity)}
+								}).format(item.sum)}
 							</Total>
 						</Item>
 					</ItemBox>
 				))}
-			</ul>
+			</List>
 
 			<PayButton onClick={() => alert('оплата...')}>
-				<p>ИТОГО:</p>
-				<p>
-					{new Intl.NumberFormat('ru-RU', {
-						maximumSignificantDigits: 3,
-					}).format(total)}{' '}
-					₽
-				</p>
+				<FinalTotal>
+					<p>ИТОГО:</p>
+					<p>
+						{new Intl.NumberFormat('ru-RU', {
+							style: 'currency',
+							currency: 'RUB',
+						}).format(trans.payments.orders_sum)}{' '}
+					</p>
+				</FinalTotal>
 			</PayButton>
 		</Container>
 	)
