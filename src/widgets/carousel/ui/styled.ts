@@ -34,7 +34,7 @@ export const CarouselBackground = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	padding: 5px;
 	backdrop-filter: blur(50px);
 `
 export const Image = styled.img`
